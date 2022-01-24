@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.burkclik.asplugin</id>
-    <name>AS-Plugin</name>
+    <name>Regression-Test</name>
     <vendor>burkclik</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -15,4 +15,16 @@
         <listener class="com.github.burkclik.asplugin.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    <actions>
+<!--        <action id="com.github.burkclik.asplugin.actions.ReferanceAction"-->
+<!--                class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"-->
+<!--                description="Run Regression Test">-->
+<!--            <add-to-group group-id="RunTestGroup" anchor="last"/>-->
+<!--        </action>-->
+            <action id="com.github.burkclik.asplugin.actions.ReferanceAction"
+                    class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"
+                    description="Run regression Test">
+                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            </action>
+    </actions>
 </idea-plugin>
