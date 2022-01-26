@@ -5,10 +5,13 @@
     <vendor>burkclik</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.burkclik.asplugin.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.burkclik.asplugin.services.MyProjectService"/>
+        <notificationGroup id="Custom Notification Group" displayType="BALLOON" key="notification.group.name"/>
     </extensions>
 
     <applicationListeners>
@@ -16,15 +19,26 @@
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
     <actions>
-<!--        <action id="com.github.burkclik.asplugin.actions.ReferanceAction"-->
-<!--                class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"-->
-<!--                description="Run Regression Test">-->
-<!--            <add-to-group group-id="RunTestGroup" anchor="last"/>-->
-<!--        </action>-->
-            <action id="com.github.burkclik.asplugin.actions.ReferanceAction"
-                    class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"
-                    description="Run regression Test">
-                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            </action>
+        <!--        <action id="com.github.burkclik.asplugin.actions.ReferanceAction"-->
+        <!--                class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"-->
+        <!--                description="Run Regression Test">-->
+        <!--            <add-to-group group-id="RunTestGroup" anchor="last"/>-->
+        <!--        </action>-->
+        <action id="com.github.burkclik.asplugin.actions.ReferanceAction"
+                class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"
+                description="Run regression Test">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+
+        <action id="com.github.burkclik.asplugin.actions.CopyReferenceAction"
+                class="com.github.burkclik.asplugin.actions.CopyReferenceAction" text="Copy UI Test Function Path"
+                description="Copy function references for UI test">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+
+        <action id="com.github.burkclik.asplugin.actions.RunUITestAction"
+                class="com.github.burkclik.asplugin.actions.RunUITestAction" text="Run UI Test">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
     </actions>
 </idea-plugin>

@@ -36,6 +36,8 @@ intellij {
     tasks.buildSearchableOptions {
         enabled = false
     }
+    plugins.add("android")
+    plugins.add("terminal")
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
