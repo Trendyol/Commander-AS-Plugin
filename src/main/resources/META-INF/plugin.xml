@@ -40,5 +40,21 @@
                 class="com.github.burkclik.asplugin.actions.RunUITestAction" text="Run UI Test">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
+
+        <group
+                id="org.intellij.sdk.action.GroupedActions"
+                text="Trendyol"
+                popup="true">
+            <add-to-group
+                    group-id="ToolsMenu"
+                    anchor="after"
+                    relative-to-action="com.github.burkclik.asplugin.actions.RunGradleAction"/>
+            <action
+                    class="com.github.burkclik.asplugin.actions.RunGradleAction"
+                    id="com.github.burkclik.asplugin.actions.RunGradleAction"
+                    text="A Group Action"
+                    description="SDK static grouped action example">
+            </action>
+        </group>
     </actions>
 </idea-plugin>
