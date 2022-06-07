@@ -48,12 +48,18 @@
             <add-to-group
                     group-id="ToolsMenu"
                     anchor="after"
-                    relative-to-action="com.github.burkclik.asplugin.actions.RunGradleAction"/>
+                    relative-to-action="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"/>
             <action
-                    class="com.github.burkclik.asplugin.actions.RunGradleAction"
-                    id="com.github.burkclik.asplugin.actions.RunGradleAction"
-                    text="A Group Action"
-                    description="SDK static grouped action example">
+                    class="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"
+                    id="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"
+                    text="Check Ktlint"
+                    description="Check ktlint">
+            </action>
+            <action
+                    class="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"
+                    id="com.github.burkclik.asplugin.actions.RunDetektCheckAction"
+                    text="Check Detekt"
+                    description="Check detekt">
             </action>
         </group>
     </actions>
