@@ -56,7 +56,7 @@
                     description="Check ktlint">
             </action>
             <action
-                    class="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"
+                    class="com.github.burkclik.asplugin.actions.RunDetektCheckAction"
                     id="com.github.burkclik.asplugin.actions.RunDetektCheckAction"
                     text="Check Detekt"
                     description="Check detekt">
