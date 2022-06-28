@@ -36,6 +36,40 @@
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
 
+        <group
+            id="org.intellij.sdk.action.ModuleGroupedActions"
+            text="Module Gradle Task"
+            popup="true">
+            <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
+
+            <action id="com.github.burkclik.asplugin.module.action.KtlintCheckAction"
+                    class="com.github.burkclik.asplugin.module.action.KtlintCheckAction"
+                    text="Run KtlintCheck Gradle Task">
+            </action>
+
+            <action id="com.github.burkclik.asplugin.module.action.DetektCheckAction"
+                    class="com.github.burkclik.asplugin.module.action.DetektCheckAction"
+                    text="Run Detekt Gradle Task">
+            </action>
+
+            <action id="com.github.burkclik.asplugin.module.action.CleanAction"
+                    class="com.github.burkclik.asplugin.module.action.CleanAction"
+                    text="Run Clean Gradle Task">
+            </action>
+
+            <action id="com.github.burkclik.asplugin.module.action.AssembleDebugAction"
+                    class="com.github.burkclik.asplugin.module.action.AssembleDebugAction"
+                    text="Run Assemble Debug Gradle Task">
+            </action>
+            <action id="com.github.burkclik.asplugin.module.action.ProjectHealthAction"
+                    class="com.github.burkclik.asplugin.module.action.ProjectHealthAction"
+                    text="Run ProjectHealth Gradle Task">
+            </action>
+            <action id="com.github.burkclik.asplugin.module.action.AssertMaxHeightAction"
+                    class="com.github.burkclik.asplugin.module.action.AssertMaxHeightAction"
+                    text="Run AssertMaxHeightAction Gradle Task">
+            </action>
+        </group>
         <action id="com.github.burkclik.asplugin.actions.RunUITestAction"
                 class="com.github.burkclik.asplugin.actions.RunUITestAction" text="Run UI Test">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>

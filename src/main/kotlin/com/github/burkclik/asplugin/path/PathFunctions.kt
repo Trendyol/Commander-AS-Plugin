@@ -9,6 +9,15 @@ fun getFullPathTerminalCommand(absolutePath: String, functionName: String): Stri
     ).joinToString(" ")
 }
 
+fun getModuleTerminalCommand(modulePath: String, gradleTaskName: String): String {
+    val subString = modulePath.substringAfter("Trendyol_v2")
+    val formattedModulePath = subString
+        .split("/")
+        .plus(gradleTaskName)
+        .joinToString(":")
+    return "./gradlew $formattedModulePath"
+}
+
 fun getGradlePath(): String {
     return "./gradlew ui-test:regression-tests:connectedDebugAndroidTest"
 }
