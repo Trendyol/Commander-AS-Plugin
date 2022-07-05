@@ -13,7 +13,9 @@ abstract class ModuleBasedGradleAction : AnAction() {
 
     override fun actionPerformed(event: AnActionEvent) {
         val path: String = event.getData(CommonDataKeys.VIRTUAL_FILE)?.path.orEmpty()
-        val formattedPath = getModuleTerminalCommand(modulePath = path, gradleTaskName = getActionName())
+        val rootPath: String = event.getData(CommonDataKeys.PROJECT)?.basePath.orEmpty().split("/").last()
+        val formattedPath =
+            getModuleTerminalCommand(rootPath = rootPath, modulePath = path, gradleTaskName = getActionName())
 
         // terminal
         val terminalView = event.project?.let { TerminalView.getInstance(it) }

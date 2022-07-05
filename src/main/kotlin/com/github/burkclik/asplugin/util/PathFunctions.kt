@@ -1,7 +1,11 @@
 package com.github.burkclik.asplugin.util
 
-fun getModuleTerminalCommand(modulePath: String, gradleTaskName: String): String {
-    val subString = modulePath.substringAfter("Trendyol_v2")
+fun getModuleTerminalCommand(
+    rootPath: String,
+    modulePath: String,
+    gradleTaskName: String
+): String {
+    val subString = modulePath.substringAfter(rootPath)
     val formattedModulePath = subString
         .split("/")
         .plus(gradleTaskName)

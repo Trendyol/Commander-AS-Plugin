@@ -1,8 +1,8 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.burkclik.asplugin</id>
-    <name>Regression-Test</name>
-    <vendor>burkclik</vendor>
+    <name>Gradle-Commands</name>
+    <vendor>Trendyol</vendor>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.android</depends>
@@ -20,7 +20,7 @@
     <actions>
         <group
             id="org.intellij.sdk.action.ModuleGroupedActions"
-            text="Module Gradle Task"
+            text="Module Gradle Tasks"
             popup="true">
             <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
 
@@ -55,7 +55,7 @@
 
         <group
                 id="org.intellij.sdk.action.GroupedActions"
-                text="Trendyol"
+                text="Project Gradle Tasks"
                 popup="true">
             <add-to-group
                     group-id="ToolsMenu"
