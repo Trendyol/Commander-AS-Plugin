@@ -1,14 +1,13 @@
-package com.github.burkclik.asplugin.module.base
+package com.github.burkclik.asplugin.actions.base
 
-import com.github.burkclik.asplugin.path.getModuleTerminalCommand
-import com.github.burkclik.asplugin.util.Util
+import com.github.burkclik.asplugin.util.getModuleTerminalCommand
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import org.jetbrains.plugins.terminal.TerminalView
 import java.io.IOException
 
-abstract class GradleAction : AnAction() {
+abstract class ModuleBasedGradleAction : AnAction() {
 
     abstract fun getActionName(): String
 
@@ -24,7 +23,6 @@ abstract class GradleAction : AnAction() {
         try {
             val terminalWidget = terminalView?.createLocalShellWidget(event.project?.basePath, terminalTabTitle)
             terminalWidget?.executeCommand(formattedPath)
-            Util.showNotification(event.project, "Running Gradle Task ${getActionName()}")
         } catch (err: IOException) {
             err.printStackTrace()
         }

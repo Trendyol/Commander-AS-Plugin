@@ -1,32 +1,26 @@
-package com.github.burkclik.asplugin.actions
+package com.github.burkclik.asplugin.actions.base
 
-import com.github.burkclik.asplugin.util.Util
-import com.intellij.notification.NotificationGroupManager
-import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.project.Project
 import org.jetbrains.plugins.terminal.TerminalView
 import java.io.IOException
 
-class RunDetektCheckAction : AnAction() {
+abstract class ProjectBasedGradleAction : AnAction() {
+
+    abstract fun getActionName(): String
+
     override fun actionPerformed(e: AnActionEvent) {
 
         // terminal
         val terminalView = e.project?.let { TerminalView.getInstance(it) }
-        val terminalTabTitle = "Detekt"
+        val terminalTabTitle = getActionName()
         // endregion
 
         try {
             val terminalWidget = terminalView?.createLocalShellWidget(e.project?.basePath, terminalTabTitle)
-            terminalWidget?.executeCommand(checkDetektCommand)
-            Util.showNotification(e.project, "Running check detekt")
+            terminalWidget?.executeCommand(getActionName())
         } catch (err: IOException) {
             err.printStackTrace()
         }
-    }
-
-    companion object {
-        private const val checkDetektCommand = "./gradlew detekt --continue"
     }
 }
