@@ -7,7 +7,7 @@ class ModuleBasedDetektCheckAction : ModuleBasedGradleAction() {
     override fun getActionName(): String = TASK_NAME
 
     companion object {
-        const val TASK_NAME = "detekt"
+        const val TASK_NAME = "detektDebug"
     }
 
 }

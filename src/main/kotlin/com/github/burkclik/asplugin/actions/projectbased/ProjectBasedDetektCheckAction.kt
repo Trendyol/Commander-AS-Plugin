@@ -6,6 +6,6 @@ class ProjectBasedDetektCheckAction : ProjectBasedGradleAction() {
     override fun getActionName(): String = TASK_NAME
 
     companion object {
-        const val TASK_NAME = "./gradlew detekt --continue"
+        const val TASK_NAME = "./gradlew detektDebug --continue"
     }
 }
