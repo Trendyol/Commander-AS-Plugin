@@ -26,12 +26,12 @@
 
             <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
                     class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
-                    text="Run KtlintCheck Gradle Task">
+                    text="Run KtlintCheck">
             </action>
 
             <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektCheckAction"
                     class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektCheckAction"
-                    text="Run Detekt Gradle Task">
+                    text="Run Detekt">
             </action>
 
             <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedCleanAction"
