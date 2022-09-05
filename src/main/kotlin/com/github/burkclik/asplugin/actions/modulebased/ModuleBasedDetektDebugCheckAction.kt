@@ -2,7 +2,7 @@ package com.github.burkclik.asplugin.actions.modulebased
 
 import com.github.burkclik.asplugin.actions.base.ModuleBasedGradleAction
 
-class ModuleBasedDetektCheckAction : ModuleBasedGradleAction() {
+class ModuleBasedDetektDebugCheckAction : ModuleBasedGradleAction() {
 
     override fun getActionName(): String = TASK_NAME
 
