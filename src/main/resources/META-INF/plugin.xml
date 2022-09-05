@@ -1,8 +1,8 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.burkclik.asplugin</id>
-    <name>Regression-Test</name>
-    <vendor>burkclik</vendor>
+    <name>Gradle-Commands</name>
+    <vendor>Trendyol</vendor>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.android</depends>
@@ -11,7 +11,6 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.burkclik.asplugin.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.burkclik.asplugin.services.MyProjectService"/>
-        <notificationGroup id="Custom Notification Group" displayType="BALLOON" key="notification.group.name"/>
     </extensions>
 
     <applicationListeners>
@@ -19,79 +18,58 @@
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
     <actions>
-        <!--        <action id="com.github.burkclik.asplugin.actions.ReferanceAction"-->
-        <!--                class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"-->
-        <!--                description="Run Regression Test">-->
-        <!--            <add-to-group group-id="RunTestGroup" anchor="last"/>-->
-        <!--        </action>-->
-        <action id="com.github.burkclik.asplugin.actions.ReferanceAction"
-                class="com.github.burkclik.asplugin.actions.ReferanceAction" text="Run Regression Test"
-                description="Run regression Test">
-            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-        </action>
-
-        <action id="com.github.burkclik.asplugin.actions.CopyReferenceAction"
-                class="com.github.burkclik.asplugin.actions.CopyReferenceAction" text="Copy UI Test Function Path"
-                description="Copy function references for UI test">
-            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-        </action>
-
         <group
             id="org.intellij.sdk.action.ModuleGroupedActions"
-            text="Module Gradle Task"
+            text="Module Gradle Tasks"
             popup="true">
             <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
 
-            <action id="com.github.burkclik.asplugin.module.action.KtlintCheckAction"
-                    class="com.github.burkclik.asplugin.module.action.KtlintCheckAction"
-                    text="Run KtlintCheck Gradle Task">
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
+                    text="Run KtlintCheck">
             </action>
 
-            <action id="com.github.burkclik.asplugin.module.action.DetektCheckAction"
-                    class="com.github.burkclik.asplugin.module.action.DetektCheckAction"
-                    text="Run Detekt Gradle Task">
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektCheckAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektCheckAction"
+                    text="Run Detekt">
             </action>
 
-            <action id="com.github.burkclik.asplugin.module.action.CleanAction"
-                    class="com.github.burkclik.asplugin.module.action.CleanAction"
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedCleanAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedCleanAction"
                     text="Run Clean Gradle Task">
             </action>
 
-            <action id="com.github.burkclik.asplugin.module.action.AssembleDebugAction"
-                    class="com.github.burkclik.asplugin.module.action.AssembleDebugAction"
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssembleDebugAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssembleDebugAction"
                     text="Run Assemble Debug Gradle Task">
             </action>
-            <action id="com.github.burkclik.asplugin.module.action.ProjectHealthAction"
-                    class="com.github.burkclik.asplugin.module.action.ProjectHealthAction"
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedProjectHealthAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedProjectHealthAction"
                     text="Run ProjectHealth Gradle Task">
             </action>
-            <action id="com.github.burkclik.asplugin.module.action.AssertMaxHeightAction"
-                    class="com.github.burkclik.asplugin.module.action.AssertMaxHeightAction"
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssertMaxHeightAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssertMaxHeightAction"
                     text="Run AssertMaxHeightAction Gradle Task">
             </action>
         </group>
-        <action id="com.github.burkclik.asplugin.actions.RunUITestAction"
-                class="com.github.burkclik.asplugin.actions.RunUITestAction" text="Run UI Test">
-            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-        </action>
 
         <group
                 id="org.intellij.sdk.action.GroupedActions"
-                text="Trendyol"
+                text="Project Gradle Tasks"
                 popup="true">
             <add-to-group
                     group-id="ToolsMenu"
                     anchor="after"
-                    relative-to-action="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"/>
+                    relative-to-action="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"/>
             <action
-                    class="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"
-                    id="com.github.burkclik.asplugin.actions.RunKtlintCheckAction"
+                    class="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"
+                    id="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"
                     text="Check Ktlint"
                     description="Check ktlint">
             </action>
             <action
-                    class="com.github.burkclik.asplugin.actions.RunDetektCheckAction"
-                    id="com.github.burkclik.asplugin.actions.RunDetektCheckAction"
+                    class="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedDetektCheckAction"
+                    id="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedDetektCheckAction"
                     text="Check Detekt"
                     description="Check detekt">
             </action>
