@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.burkclik.asplugin</id>
-    <name>Gradle-Commands</name>
+    <name>Commander</name>
     <vendor>Trendyol</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -20,18 +20,24 @@
     <actions>
         <group
             id="org.intellij.sdk.action.ModuleGroupedActions"
-            text="Module Gradle Tasks"
+            text="Commander Module Gradle Tasks"
+            icon="AllIcons.Actions.Lightning"
             popup="true">
             <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
-
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
+            <action
+                    id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
                     class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
-                    text="Run KtlintCheck">
+                    text="Run KtlintCheck Gradle Task">
             </action>
 
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektCheckAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektCheckAction"
-                    text="Run Detekt">
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektDebugCheckAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektDebugCheckAction"
+                    text="Run DetektDebug Gradle Task">
+            </action>
+
+            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektBaseLineDebugAction"
+                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektBaseLineDebugAction"
+                    text="Run DetektBaseLineDebug Gradle Task">
             </action>
 
             <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedCleanAction"
@@ -55,23 +61,23 @@
 
         <group
                 id="org.intellij.sdk.action.GroupedActions"
-                text="Project Gradle Tasks"
+                text="Commander"
                 popup="true">
             <add-to-group
-                    group-id="ToolsMenu"
+                    group-id="MainMenu"
                     anchor="after"
                     relative-to-action="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"/>
             <action
                     class="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"
                     id="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"
-                    text="Check Ktlint"
-                    description="Check ktlint">
+                    text="Run KtlintCheck Gradle Task"
+                    description="Run ktlintCheck gradle task">
             </action>
             <action
                     class="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedDetektCheckAction"
                     id="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedDetektCheckAction"
-                    text="Check Detekt"
-                    description="Check detekt">
+                    text="Run DetektDebug Gradle Task"
+                    description="Run detektDebug gradle task">
             </action>
         </group>
     </actions>
