@@ -14,44 +14,13 @@
 
     <actions>
         <group
-            id="org.intellij.sdk.action.ModuleGroupedActions"
-            text="Commander Module Gradle Tasks"
-            icon="AllIcons.Actions.Lightning"
-            popup="true">
+                id="com.github.burkclik.asplugin.actions.DynamicActionGroup"
+                class="com.github.burkclik.asplugin.actions.DynamicActionGroup"
+                text="Commander Module Gradle Tasks"
+                icon="AllIcons.Actions.Lightning"
+                popup="true">
             <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
-            <action
-                    id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
-                    text="Run KtlintCheck Gradle Task">
-            </action>
 
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektDebugCheckAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektDebugCheckAction"
-                    text="Run DetektDebug Gradle Task">
-            </action>
-
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektBaseLineDebugAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedDetektBaseLineDebugAction"
-                    text="Run DetektBaseLineDebug Gradle Task">
-            </action>
-
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedCleanAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedCleanAction"
-                    text="Run Clean Gradle Task">
-            </action>
-
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssembleDebugAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssembleDebugAction"
-                    text="Run Assemble Debug Gradle Task">
-            </action>
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedProjectHealthAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedProjectHealthAction"
-                    text="Run ProjectHealth Gradle Task">
-            </action>
-            <action id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssertMaxHeightAction"
-                    class="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedAssertMaxHeightAction"
-                    text="Run AssertMaxHeightAction Gradle Task">
-            </action>
         </group>
 
         <group
