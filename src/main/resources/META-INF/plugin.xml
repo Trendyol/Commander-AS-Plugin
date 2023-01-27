@@ -10,13 +10,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.burkclik.asplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.burkclik.asplugin.services.MyProjectService"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.burkclik.asplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
     <actions>
         <group
             id="org.intellij.sdk.action.ModuleGroupedActions"
