@@ -5,10 +5,11 @@ fun getModuleTerminalCommand(
     modulePath: String,
     gradleTaskName: String
 ): String {
+    val moduleName = getModuleName(rootPath, modulePath)
+    return "./gradlew $moduleName:$gradleTaskName"
+}
+
+fun getModuleName(rootPath: String, modulePath: String): String {
     val subString = modulePath.substringAfter(rootPath)
-    val formattedModulePath = subString
-        .split("/")
-        .plus(gradleTaskName)
-        .joinToString(":")
-    return "./gradlew $formattedModulePath"
+    return subString.split("/").joinToString(":") { it }
 }
