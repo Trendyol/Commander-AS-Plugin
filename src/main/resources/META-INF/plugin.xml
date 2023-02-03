@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.burkclik.asplugin</id>
-    <name>Commander</name>
+    <name>Gradle Commander</name>
     <vendor>Trendyol</vendor>
 
     <depends>com.intellij.modules.platform</depends>
