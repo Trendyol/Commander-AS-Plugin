@@ -4,6 +4,18 @@
     <name>Gradle Commander</name>
     <vendor>Trendyol</vendor>
 
+    <description><![CDATA[
+      <p>Gradle Commander Plugin</p>
+      <br/>
+      <p>Commander AS-Plugin can run gradle commands in your project and modules easily.</p>
+      <p>Click Commander tab and choose the gradle task you want to run.In terminal tab, you can see the task results.</p>
+      <br/>
+      <p>See also:</p>
+      <ul>
+        <li><a href="https://github.com/Trendyol/Commander-AS-Plugin">GitHub repository</a>: documentation and contributing</li>
+      </ul>
+    ]]></description>
+
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.android</depends>
     <depends>org.jetbrains.plugins.terminal</depends>
@@ -14,10 +26,10 @@
 
     <actions>
         <group
-            id="org.intellij.sdk.action.ModuleGroupedActions"
-            text="Commander Module Gradle Tasks"
-            icon="AllIcons.Actions.Lightning"
-            popup="true">
+                id="org.intellij.sdk.action.ModuleGroupedActions"
+                text="Commander Module Gradle Tasks"
+                icon="AllIcons.Actions.Lightning"
+                popup="true">
             <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
             <action
                     id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
