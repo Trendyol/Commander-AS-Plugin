@@ -7,7 +7,7 @@
     <description><![CDATA[
       <p>Gradle Commander Plugin</p>
       <br/>
-      <p>Commander AS-Plugin can run gradle commands in your project and modules easily.</p>
+      <p>Commander AS-Plugin can run gradle commands in your project and modules.</p>
       <p>Click Commander tab and choose the gradle task you want to run.In terminal tab, you can see the task results.</p>
       <br/>
       <p>See also:</p>
