@@ -1,8 +1,22 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.burkclik.asplugin</id>
-    <name>Commander</name>
+    <name>Gradle Commander</name>
     <vendor>Trendyol</vendor>
+    <version>0.0.2</version>
+    <idea-version since-build="221" until-build="221.*"/>
+
+    <description><![CDATA[
+      <p>Gradle Commander Plugin</p>
+      <br/>
+      <p>Commander AS-Plugin can run gradle commands in your project and modules.</p>
+      <p>Click Commander tab and choose the gradle task you want to run.In terminal tab, you can see the task results.</p>
+      <br/>
+      <p>See also:</p>
+      <ul>
+        <li><a href="https://github.com/Trendyol/Commander-AS-Plugin">GitHub repository</a>: documentation and contributing</li>
+      </ul>
+    ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.android</depends>
@@ -14,10 +28,10 @@
 
     <actions>
         <group
-            id="org.intellij.sdk.action.ModuleGroupedActions"
-            text="Commander Module Gradle Tasks"
-            icon="AllIcons.Actions.Lightning"
-            popup="true">
+                id="org.intellij.sdk.action.ModuleGroupedActions"
+                text="Commander Module Gradle Tasks"
+                icon="AllIcons.Actions.Lightning"
+                popup="true">
             <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
             <action
                     id="com.github.burkclik.asplugin.actions.modulebased.ModuleBasedKtlintCheckAction"
