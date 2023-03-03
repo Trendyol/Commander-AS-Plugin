@@ -22,10 +22,6 @@ repositories {
     mavenCentral()
 }
 
-kotlin {
-    jvmToolchain(11)
-}
-
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     pluginName.set(properties("pluginName"))
@@ -122,3 +118,4 @@ tasks {
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 }
+kotlin.jvmToolchain(11)
