@@ -14,8 +14,8 @@
 
     <actions>
         <group
-                id="com.github.burkclik.asplugin.actions.DynamicActionGroup"
-                class="com.github.burkclik.asplugin.actions.DynamicActionGroup"
+                id="com.github.burkclik.asplugin.actions.ModuleLevelDynamicActionGroup"
+                class="com.github.burkclik.asplugin.actions.ModuleLevelDynamicActionGroup"
                 text="Commander Module Gradle Tasks"
                 icon="AllIcons.Actions.Lightning"
                 popup="true">
@@ -25,24 +25,12 @@
 
         <group
                 id="org.intellij.sdk.action.GroupedActions"
+                class="com.github.burkclik.asplugin.actions.RootLevelDynamicActionGroup"
                 text="Commander"
                 popup="true">
             <add-to-group
                     group-id="MainMenu"
-                    anchor="after"
-                    relative-to-action="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"/>
-            <action
-                    class="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"
-                    id="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedKtlintCheckAction"
-                    text="Run KtlintCheck Gradle Task"
-                    description="Run ktlintCheck gradle task">
-            </action>
-            <action
-                    class="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedDetektCheckAction"
-                    id="com.github.burkclik.asplugin.actions.projectbased.ProjectBasedDetektCheckAction"
-                    text="Run DetektDebug Gradle Task"
-                    description="Run detektDebug gradle task">
-            </action>
+                    anchor="last"/>
         </group>
     </actions>
 </idea-plugin>
