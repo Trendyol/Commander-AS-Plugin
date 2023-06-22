@@ -15,13 +15,13 @@ class RootLevelDynamicActionGroup : ActionGroup() {
             .onFailure { it.printStackTrace() }
             .getOrNull()
             .orEmpty()
-            .map2Array { taskName -> createRootGradleTaskAction(taskName) }
+            .map2Array { taskName -> createRootGradleTaskAction(splitTaskName(taskName)) }
     }
 
-    private fun createRootGradleTaskAction(taskName: String) = GradleTaskAction(
+    private fun createRootGradleTaskAction(taskName: List<String>) = GradleTaskAction(
         tabName = "root",
-        taskName = taskName,
-        gradleTerminalCommand = "./gradlew $taskName"
+        taskName = taskName.first(),
+        gradleTerminalCommand = "./gradlew ${taskName.last()}"
     )
 
     private fun readActions(project: Project): List<String> {
@@ -29,6 +29,12 @@ class RootLevelDynamicActionGroup : ActionGroup() {
             .readConfigFile(project, "config/Commander/root-level-tasks.txt")
     }
 
+    private fun splitTaskName(task: String): List<String> {
+        return task.split(" ", limit = MAX_SUBSTRING)
+    }
 
+    companion object {
+        private const val MAX_SUBSTRING = 2
+    }
 }
 

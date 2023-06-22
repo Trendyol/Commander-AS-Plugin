@@ -19,7 +19,7 @@ class ModuleLevelDynamicActionGroup : ActionGroup() {
             .onFailure { it.printStackTrace() }
             .getOrNull()
             .orEmpty()
-            .map2Array { createModuleLevelGradleTaskAction(event, it) }
+            .map2Array { createModuleLevelGradleTaskAction(event, splitTaskName(it)) }
     }
 
     private fun readActions(project: Project): List<String> {
@@ -27,15 +27,23 @@ class ModuleLevelDynamicActionGroup : ActionGroup() {
             .readConfigFile(project, "config/Commander/module-tasks.txt")
     }
 
-    private fun createModuleLevelGradleTaskAction(event: AnActionEvent, task: String): GradleTaskAction {
+    private fun createModuleLevelGradleTaskAction(event: AnActionEvent, task: List<String>): GradleTaskAction {
         val path: String = event.getData(CommonDataKeys.VIRTUAL_FILE)?.path.orEmpty()
         val rootPath: String = event.getData(CommonDataKeys.PROJECT)?.basePath.orEmpty().split("/").last()
-        val gradleTerminalCommand = getModuleTerminalCommand(rootPath = rootPath, modulePath = path, gradleTaskName = task)
+        val gradleTerminalCommand = getModuleTerminalCommand(rootPath = rootPath, modulePath = path, gradleTaskName = task.last())
         val moduleName = getModuleName(rootPath, path)
         return GradleTaskAction(
             tabName = moduleName,
-            taskName = task,
+            taskName = task.first(),
             gradleTerminalCommand = gradleTerminalCommand
         )
+    }
+
+    private fun splitTaskName(task: String): List<String> {
+        return task.split(" ", limit = MAX_SUBSTRING)
+    }
+
+    companion object {
+        private const val MAX_SUBSTRING = 2
     }
 }
