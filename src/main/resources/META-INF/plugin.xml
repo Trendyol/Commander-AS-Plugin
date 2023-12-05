@@ -3,8 +3,8 @@
     <id>com.github.burkclik.asplugin</id>
     <name>Gradle Commander</name>
     <vendor>Trendyol</vendor>
-    <version>0.0.2</version>
-    <idea-version since-build="221" until-build="221.*"/>
+    <version>0.0.3</version>
+    <idea-version since-build="222.*"/>
 
     <description><![CDATA[
       <p>Gradle Commander Plugin</p>
@@ -24,6 +24,13 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.burkclik.asplugin.services.MyApplicationService"/>
+        <projectConfigurable
+                parentId="root"
+                instance="com.github.burkclik.asplugin.ui.ProjectSettingsConfigurable"
+                id="com.github.burkclik.asplugin.ui.ProjectSettingsConfigurable"
+                displayName="Commander"
+                nonDefaultProject="false"
+        />
     </extensions>
 
     <actions>
