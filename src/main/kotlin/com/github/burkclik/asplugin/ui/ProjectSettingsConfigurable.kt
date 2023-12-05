@@ -7,7 +7,6 @@ import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.TopGap
 import com.intellij.ui.dsl.builder.panel
-import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import javax.swing.JComponent
 import javax.swing.event.DocumentEvent
 import javax.swing.event.DocumentListener
@@ -23,24 +22,19 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
 
     override fun createComponent(): JComponent {
         val panel = panel {
-            row("Command Name:") {
-                cell(commandName.apply {
-                    document.addDocumentListener(this@ProjectSettingsConfigurable)
-                })
-                    .horizontalAlign(HorizontalAlign.FILL)
-                    .component.emptyText.setText("projectHealth")
-            }
-
-            row("Command:") {
-                cell(command.apply {
-                    document.addDocumentListener(this@ProjectSettingsConfigurable)
-                })
-                    .horizontalAlign(HorizontalAlign.FILL)
-                    .component.emptyText.setText("projectHealth -Pdependency.analysis.autoapply=true")
-            }.rowComment(
-                "If you add a flag, please add it after to task!"
+            createTextField(
+                textFieldComponent = commandName,
+                label = "Command Name: ",
+                placeholder = "projectHealth",
+                listener = this@ProjectSettingsConfigurable
             )
-
+            createTextField(
+                textFieldComponent = command,
+                label = "Command: ",
+                placeholder = "projectHealth -Pdependency.analysis.autoapply=true",
+                listener = this@ProjectSettingsConfigurable,
+                hint = "If you add a flag, please add it after to task!"
+            )
             row("Command Type:") {
                 cell(rootCheckbox.apply { text = "Root" })
                 cell(moduleCheckbox.apply { text = "Module" })
@@ -84,10 +78,10 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
 
     private fun writeFile(path: String) {
         val fullCommand = "${commandName.text} ${command.text}"
-        ConfigFileWriter().writeToTextFile(project, path, fullCommand)
+        ConfigFileWriter().appendToTextFile(project, path, fullCommand)
     }
 
     companion object {
-        private const val PLUGIN_NAME = "Commande"
+        private const val PLUGIN_NAME = "Commander"
     }
 }

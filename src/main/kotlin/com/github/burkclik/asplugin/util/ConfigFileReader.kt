@@ -5,7 +5,7 @@ import java.io.File
 import java.nio.file.Path
 import java.nio.file.Paths
 
-class ConfigFileReader constructor() {
+class ConfigFileReader {
 
     fun readConfigFile(project: Project, path: String): List<String> {
         val moduleTasksPath = getModuleTasksConfigAbsolutePath(

@@ -13,7 +13,7 @@ import java.nio.file.Paths
 
 class ConfigFileWriter {
 
-    fun writeToTextFile(project: Project, path: String ,content: String) {
+    fun appendToTextFile(project: Project, path: String ,content: String) {
         val moduleTasksPath = getModuleTasksConfigAbsolutePath(project, path)
         val filePath = File(moduleTasksPath.toString())
         try {
@@ -24,6 +24,7 @@ class ConfigFileWriter {
             if (existingData.isNotEmpty()) {
                 bufferedWriter.newLine()
             }
+
             bufferedWriter.append(content)
             bufferedWriter.close()
             VirtualFileManager.getInstance().syncRefresh()
