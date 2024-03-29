@@ -2,6 +2,7 @@
 
 # AS-Plugin Changelog
 
-## [Unreleased]
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+## Unreleased
+
+### Fixed
+- Update supported for Android Studio Iguana 
