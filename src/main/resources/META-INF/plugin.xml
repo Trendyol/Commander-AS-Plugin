@@ -3,8 +3,8 @@
     <id>com.github.burkclik.asplugin</id>
     <name>Gradle Commander</name>
     <vendor>Trendyol</vendor>
-    <version>0.0.3</version>
-    <idea-version since-build="222.*"/>
+    <version>0.1.1</version>
+    <idea-version since-build="231.*"/>
 
     <description><![CDATA[
       <p>Gradle Commander Plugin</p>
@@ -23,7 +23,6 @@
     <depends>org.jetbrains.plugins.terminal</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.burkclik.asplugin.services.MyApplicationService"/>
         <projectConfigurable
                 parentId="root"
                 instance="com.github.burkclik.asplugin.ui.ProjectSettingsConfigurable"
@@ -36,12 +35,22 @@
     <actions>
         <group
                 id="org.intellij.sdk.action.ModuleGroupedActions"
-                class="com.github.burkclik.asplugin.actions.ModuleLevelDynamicActionGroup"
-                text="Commander Module Gradle Tasks"
+                text="Commander"
                 icon="AllIcons.Actions.Lightning"
                 popup="true">
             <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last"/>
-
+            <group
+                    class="com.github.burkclik.asplugin.actions.ScriptTaskAction"
+                    text="Scripts"
+                    popup="true">
+                >
+            </group>
+            <group
+                    class="com.github.burkclik.asplugin.actions.ModuleLevelDynamicActionGroup"
+                    text="Module Gradle Tasks"
+                    popup="true">
+                >
+            </group>
         </group>
 
         <group
