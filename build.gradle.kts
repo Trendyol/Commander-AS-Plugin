@@ -1,17 +1,16 @@
 import org.jetbrains.changelog.markdownToHTML
-fun properties(key: String) = project.findProperty(key).toString()
+import org.jetbrains.changelog.Changelog
+
+fun properties(key: String) = providers.gradleProperty(key).get()
+fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     // Java support
     id("java")
-    // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.9.21"
-    // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij") version "1.12.0"
-    // Gradle Changelog Plugin
-    id("org.jetbrains.changelog") version "2.0.0"
-    // Gradle Qodana Plugin
-    id("org.jetbrains.qodana") version "0.1.13"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.gradleIntelliJPlugin)
+    alias(libs.plugins.changelog)
+    alias(libs.plugins.qodana)
 }
 
 group = properties("pluginGroup")
@@ -20,6 +19,10 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
@@ -41,21 +44,12 @@ intellij {
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
-    version.set(properties("pluginVersion"))
-    groups.set(emptyList())
-}
-
-// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
-qodana {
-    cachePath.set(projectDir.resolve(".qodana").canonicalPath)
-    reportPath.set(projectDir.resolve("build/reports/inspections").canonicalPath)
-    saveReport.set(true)
-    showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
+    version = properties("pluginVersion")
+    groups = emptyList()
+    repositoryUrl = properties("pluginRepositoryUrl")
 }
 
 tasks {
-
-
     runIde {
         ideDir.set(file("/Applications/Android Studio.app/Contents"))
         autoReloadPlugins.set(true)
@@ -87,9 +81,12 @@ tasks {
         // Get the latest available change notes from the changelog file
         changeNotes.set(provider {
             with(changelog) {
-                renderItem(getOrNull(properties("pluginVersion"))
-                    ?: runCatching { getLatest() }.getOrElse { getUnreleased() },
-                    org.jetbrains.changelog.Changelog.OutputType.HTML,
+                renderItem(
+                    getOrNull(properties("pluginVersion"))
+                        ?: runCatching { getLatest() }.getOrElse { getUnreleased() }
+                            .withHeader(false)
+                            .withEmptySections(false),
+                    Changelog.OutputType.HTML,
                 )
             }
         })
@@ -105,18 +102,21 @@ tasks {
     }
 
     signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+        certificateChain = environment("CERTIFICATE_CHAIN")
+        privateKey = environment("PRIVATE_KEY")
+        password = environment("PRIVATE_KEY_PASSWORD")
     }
 
     publishPlugin {
         dependsOn("patchChangelog")
-        token.set(System.getenv("PUBLISH_TOKEN"))
-        // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
+        token = environment("PUBLISH_TOKEN")
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+        channels = listOf(
+            properties("pluginVersion")
+                .substringAfter('-', "")
+                .substringBefore('.')
+                .ifEmpty { "default" }
+        )
     }
 }
-kotlin.jvmToolchain(17)
