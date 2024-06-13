@@ -1,0 +1,14 @@
+[versions]
+# plugins
+kotlin = "2.0.0"
+changelog = "2.2.0"
+gradleIntelliJPlugin = "1.17.3"
+qodana = "2024.1.5"
+
+[libraries]
+
+[plugins]
+changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
+gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
