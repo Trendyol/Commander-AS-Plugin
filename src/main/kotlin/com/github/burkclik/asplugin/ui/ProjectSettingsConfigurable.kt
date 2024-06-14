@@ -5,9 +5,9 @@ import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.project.Project
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBTextField
+import com.intellij.ui.dsl.builder.AlignX
 import com.intellij.ui.dsl.builder.TopGap
 import com.intellij.ui.dsl.builder.panel
-import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import javax.swing.JComponent
 import javax.swing.event.DocumentEvent
 import javax.swing.event.DocumentListener
@@ -27,7 +27,7 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
                 cell(commandName.apply {
                     document.addDocumentListener(this@ProjectSettingsConfigurable)
                 })
-                    .horizontalAlign(HorizontalAlign.FILL)
+                    .align(AlignX.FILL)
                     .component.emptyText.setText("projectHealth")
             }
 
@@ -35,7 +35,7 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
                 cell(command.apply {
                     document.addDocumentListener(this@ProjectSettingsConfigurable)
                 })
-                    .horizontalAlign(HorizontalAlign.FILL)
+                    .align(AlignX.FILL)
                     .component.emptyText.setText("projectHealth -Pdependency.analysis.autoapply=true")
             }.rowComment(
                 "If you add a flag, please add it after to task!"
