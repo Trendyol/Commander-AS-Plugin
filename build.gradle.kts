@@ -13,8 +13,8 @@ plugins {
     alias(libs.plugins.qodana)
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+group = properties("pluginGroup").get()
+version = properties("pluginVersion").get()
 
 // Configure project's dependencies
 repositories {
@@ -27,34 +27,33 @@ kotlin {
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    type.set(properties("platformType"))
+    pluginName = properties("pluginName")
+    version = properties("platformVersion")
+    type = properties("platformType")
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
-    updateSinceUntilBuild.set(false)
+    updateSinceUntilBuild = false
 
-    tasks.buildSearchableOptions {
+    /*tasks.buildSearchableOptions {
         enabled = false
-    }
+    }*/
     plugins.add("android")
     plugins.add("terminal")
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
-    version = properties("pluginVersion")
-    groups = emptyList()
+    groups.empty()
     repositoryUrl = properties("pluginRepositoryUrl")
 }
 
 tasks {
-    runIde {
+    /*runIde {
         ideDir.set(file("/Applications/Android Studio.app/Contents"))
         autoReloadPlugins.set(true)
         maxHeapSize = "4g"
-    }
+    }*/
 
 
     wrapper {
