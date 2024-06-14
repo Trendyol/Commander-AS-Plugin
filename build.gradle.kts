@@ -13,8 +13,8 @@ plugins {
     alias(libs.plugins.qodana)
 }
 
-group = properties("pluginGroup").get()
-version = properties("pluginVersion").get()
+group = properties("pluginGroup")
+version = properties("pluginVersion")
 
 // Configure project's dependencies
 repositories {
@@ -34,10 +34,6 @@ intellij {
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
     updateSinceUntilBuild = false
-
-    /*tasks.buildSearchableOptions {
-        enabled = false
-    }*/
     plugins.add("android")
     plugins.add("terminal")
 }
@@ -49,13 +45,6 @@ changelog {
 }
 
 tasks {
-    /*runIde {
-        ideDir.set(file("/Applications/Android Studio.app/Contents"))
-        autoReloadPlugins.set(true)
-        maxHeapSize = "4g"
-    }*/
-
-
     wrapper {
         gradleVersion = properties("gradleVersion").get()
     }
