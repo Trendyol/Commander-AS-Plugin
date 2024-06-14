@@ -62,8 +62,8 @@ tasks {
     }
 
     patchPluginXml {
-        version.set(properties("pluginVersion"))
-        sinceBuild.set(properties("pluginSinceBuild"))
+        version = properties("pluginVersion")
+        sinceBuild = properties("pluginSinceBuild")
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
@@ -78,6 +78,7 @@ tasks {
             }
         }
 
+        val changelog = project.changelog // local variable for configuration cache compatibility
         // Get the latest available change notes from the changelog file
         changeNotes = properties("pluginVersion").map { pluginVersion ->
             with(changelog) {
