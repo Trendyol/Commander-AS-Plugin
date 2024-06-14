@@ -13,8 +13,8 @@ plugins {
     alias(libs.plugins.qodana)
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+group = properties("pluginGroup").get()
+version = properties("pluginVersion").get()
 
 // Configure project's dependencies
 repositories {
@@ -42,7 +42,6 @@ intellij {
 changelog {
     groups.empty()
     repositoryUrl = properties("pluginRepositoryUrl")
-    version = properties("pluginVersion")
 }
 
 tasks {
