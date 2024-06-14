@@ -1,7 +1,7 @@
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.changelog.Changelog
 
-fun properties(key: String) = providers.gradleProperty(key).get()
+fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
@@ -32,7 +32,7 @@ intellij {
     type.set(properties("platformType"))
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+    plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
     updateSinceUntilBuild.set(false)
 
     tasks.buildSearchableOptions {
@@ -58,7 +58,7 @@ tasks {
 
 
     wrapper {
-        gradleVersion = properties("gradleVersion")
+        gradleVersion = properties("gradleVersion").get()
     }
 
     patchPluginXml {
@@ -79,17 +79,16 @@ tasks {
         )
 
         // Get the latest available change notes from the changelog file
-        changeNotes.set(provider {
+        changeNotes = properties("pluginVersion").map { pluginVersion ->
             with(changelog) {
                 renderItem(
-                    getOrNull(properties("pluginVersion"))
-                        ?: runCatching { getLatest() }.getOrElse { getUnreleased() }
-                            .withHeader(false)
-                            .withEmptySections(false),
+                    (getOrNull(pluginVersion) ?: getUnreleased())
+                        .withHeader(false)
+                        .withEmptySections(false),
                     Changelog.OutputType.HTML,
                 )
             }
-        })
+        }
     }
 
     // Configure UI tests plugin
@@ -112,11 +111,8 @@ tasks {
         token = environment("PUBLISH_TOKEN")
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels = listOf(
-            properties("pluginVersion")
-                .substringAfter('-', "")
-                .substringBefore('.')
-                .ifEmpty { "default" }
-        )
+        channels = properties("pluginVersion").map {
+            listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
+        }
     }
 }
