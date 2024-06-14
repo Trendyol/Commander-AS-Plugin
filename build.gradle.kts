@@ -42,6 +42,7 @@ intellij {
 changelog {
     groups.empty()
     repositoryUrl = properties("pluginRepositoryUrl")
+    version = properties("pluginVersion")
 }
 
 tasks {
