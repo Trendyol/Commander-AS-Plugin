@@ -3,8 +3,6 @@
     <id>com.github.burkclik.asplugin</id>
     <name>Gradle Commander</name>
     <vendor>Trendyol</vendor>
-    <version>0.1.1</version>
-    <idea-version since-build="231.*"/>
 
     <description><![CDATA[
       <p>Gradle Commander Plugin</p>
