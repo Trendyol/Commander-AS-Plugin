@@ -18,6 +18,7 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
     private val commandName: JBTextField = JBTextField()
     private val rootCheckbox: JBCheckBox = JBCheckBox()
     private val moduleCheckbox: JBCheckBox = JBCheckBox()
+    private val fileCheckbox: JBCheckBox = JBCheckBox()
 
     private var modified = false
 
@@ -44,13 +45,15 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
             row("Command Type:") {
                 cell(rootCheckbox.apply { text = "Root" })
                 cell(moduleCheckbox.apply { text = "Module" })
+                cell(fileCheckbox.apply { text = "File" })
             }.topGap(TopGap.MEDIUM)
         }
 
         return panel
     }
 
-    override fun isModified(): Boolean = modified && (rootCheckbox.isSelected || moduleCheckbox.isSelected)
+    override fun isModified(): Boolean = modified && (
+            rootCheckbox.isSelected || moduleCheckbox.isSelected || fileCheckbox.isSelected)
 
     override fun apply() {
         writeToFile()
@@ -72,13 +75,16 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
     }
 
     private fun writeToFile() {
-        if (rootCheckbox.isSelected && moduleCheckbox.isSelected) {
-            writeFile("config/Commander/module-tasks.txt")
+        if (rootCheckbox.isSelected) {
             writeFile("config/Commander/root-level-tasks.txt")
-        } else if (rootCheckbox.isSelected) {
-            writeFile("config/Commander/root-level-tasks.txt")
-        } else {
+        }
+
+        if (moduleCheckbox.isSelected) {
             writeFile("config/Commander/module-tasks.txt")
+        }
+
+        if (fileCheckbox.isSelected) {
+            writeFile("config/Commander/file-tasks.txt")
         }
     }
 
@@ -88,6 +94,6 @@ class ProjectSettingsConfigurable(private val project: Project) : Configurable, 
     }
 
     companion object {
-        private const val PLUGIN_NAME = "Commande"
+        private const val PLUGIN_NAME = "Commander"
     }
 }
