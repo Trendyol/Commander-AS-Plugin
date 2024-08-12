@@ -49,6 +49,11 @@
                     popup="true">
                 >
             </group>
+            <group
+                class="com.github.burkclik.asplugin.actions.FileLevelDynamicActionGroup"
+                text="File Tasks"
+                popup="true">
+            </group>
         </group>
 
         <group
