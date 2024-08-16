@@ -2,7 +2,13 @@
 
 # AS-Plugin Changelog
 
-## Unreleased
+## [Unreleased]
+
+## [0.1.4] - 2024-08-16
 
 ### Fixed
-- Update supported for Android Studio Iguana 
+
+- Update supported for Android Studio Iguana
+
+[Unreleased]: https://github.com/Trendyol/Commander-AS-Plugin/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/Trendyol/Commander-AS-Plugin/commits/v0.1.4
