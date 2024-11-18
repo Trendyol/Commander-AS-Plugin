@@ -37,11 +37,11 @@ class RootLevelDynamicActionGroup : ActionGroup() {
     }
 
     private fun createRootGradleTaskAction(task: TaskModel): GradleTaskAction {
-        val taskName = splitTaskName((task as GradleTask).name)
+        val (taskName, commands) = splitTaskName((task as GradleTask).name)
         return GradleTaskAction(
             tabName = "root",
-            taskName = taskName.first(),
-            gradleTerminalCommand = "./gradlew ${taskName.last()}"
+            taskName = taskName,
+            gradleTerminalCommand = "./gradlew $commands"
         )
     }
 
@@ -52,8 +52,12 @@ class RootLevelDynamicActionGroup : ActionGroup() {
             .toMutableList()
     }
 
-    private fun splitTaskName(task: String): List<String> {
-        return task.split(" ", limit = MAX_SUBSTRING)
+    private fun splitTaskName(task: String): Pair<String, String> {
+        val splittedTask = task.split(" ")
+        val taskName = splittedTask.first()
+        val commands = splittedTask.filterIndexed { index, _ -> index > 0 }.joinToString(" ")
+
+        return taskName to commands
     }
 
     private fun mergeTasks(project: Project): MutableList<TaskModel> {
@@ -64,7 +68,6 @@ class RootLevelDynamicActionGroup : ActionGroup() {
     }
 
     companion object {
-        private const val MAX_SUBSTRING = 2
         private const val PYTHON_SUFFIX = ".py"
         private const val COMMANDER_PREFIX = "commander_root"
     }
