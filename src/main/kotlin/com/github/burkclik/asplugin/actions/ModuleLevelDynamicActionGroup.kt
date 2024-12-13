@@ -43,12 +43,23 @@ class ModuleLevelDynamicActionGroup : ActionGroup() {
 
     private fun splitTaskName(task: String): Pair<String, String> {
         val splittedTask = task.split(DELIMITER)
+
+        val isAnyFlagExist = splittedTask.any { it.contains(FLAG_PREFIX) }
         val taskName = splittedTask.first()
-        val commands = splittedTask.filterIndexed { index, _ -> index > 0 }.joinToString(",")
-        return taskName to "{$commands}"
+        val commands = splittedTask.filterIndexed { index, _ -> index > 0 }
+
+        return if (isAnyFlagExist) {
+            taskName to commands.joinToString(DELIMITER)
+        } else {
+            val joinedCommands = commands.joinToString(",")
+            val modifiedCommands = if (commands.size == MIN_COMMAND_SIZE) commands.first() else "{$joinedCommands}"
+            taskName to modifiedCommands
+        }
     }
 
     companion object {
-        const val DELIMITER = " "
+        private const val FLAG_PREFIX = '-'
+        private const val DELIMITER = " "
+        private const val MIN_COMMAND_SIZE = 1
     }
 }
