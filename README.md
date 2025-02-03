@@ -1,3 +1,5 @@
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Trendyol/Commander-AS-Plugin/badge)](https://scorecard.dev/viewer/?uri=github.com/Trendyol/Commander-AS-Plugin)
 # AS-Plugin
 
 ![Build](https://github.com/BurkClik/AS-Plugin/workflows/Build/badge.svg)
